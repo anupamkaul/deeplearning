@@ -1,0 +1,7 @@
+jupyter notebook
+
+or
+
+jupyter notebook (name of .ipynb)
+
+ctrl-c twice to end
