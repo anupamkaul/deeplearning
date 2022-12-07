@@ -1,0 +1,11 @@
+These are from the book "GANs by David Foster" (O Rielly)
+
+GANs : generational networks (generate X dataset using Pmodel to estimate Pdata)
+
+Pg 27 : how to set up (done : keras, tf, "generative" env)
+
+Pg 35 : your first dnn : loading the CIFAR-10 dataset 
+        (a collection of 60K 32 * 32 pixel color images 
+         bundled with Keras : each image is classified 
+         into 1 of 10 classes)
+
