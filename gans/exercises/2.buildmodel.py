@@ -15,7 +15,7 @@ Many models though require that output from a layer is passed to multiple
 seperate layers beneath it, conversely that an input layer recieves inputs 
 frm multiple layers above it (or juxtapose right and left terminologies)
 
-So lets focus on Functional APIs which are more flexible, allow you to build from scratch your model arch,
+So lets focus on Functional APIs which are more flexible, allow me to build from scratch (my model arch),
 and serve me better inn the long run, as my neural networks become more architecturally complex. FunctionalAPI
 gives me complete freedom over the design of my deep neural network.
 
@@ -37,7 +37,28 @@ model = Sequential([
 
 ])
 
+print("\nSummary of Model using Sequential construct:\n")
 model.summary()
+
+# Example 2.2 : Architecture using FunctionalAPI
+
+from keras.layers import Input, Flatten, Dense
+from keras.models import Model
+
+input_layer = Input(shape=(32, 32, 3))
+
+x = Flatten()(input_layer)
+
+x = Dense(units=200, activation = 'relu')(x)
+x = Dense(units=150, activation = 'relu')(x)
+
+output_layer = Dense(units=10, activation = 'softmax')(x)
+
+model = Model(input_layer, output_layer)
+
+print("\nSummary of Model using Functional API:\n")
+model.summary()
+
 
 
 
