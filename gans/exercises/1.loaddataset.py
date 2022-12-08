@@ -1,3 +1,9 @@
+"""
+The 1st example shows how to download a dataset (CIFAR-10)
+and how to extract training and test data for a neural network
+
+"""
+
 import numpy as np
 from keras.utils import to_categorical
 from keras.datasets import cifar10
