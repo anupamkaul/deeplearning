@@ -1,3 +1,24 @@
+
+import numpy as np
+from keras.utils import to_categorical
+from keras.datasets import cifar10
+
+print("\n\nLoading (or reading cached values of) CIFAR-10 dataset:\n")
+
+(x_train, y_train), (x_test, y_test) = cifar10.load_data()
+
+NUM_CLASSES = 10
+
+x_train = x_train.astype('float32') / 255.0
+x_test =  x_test.astype('float32') / 255.0
+
+y_train = to_categorical(y_train, NUM_CLASSES)
+y_test =  to_categorical(y_test, NUM_CLASSES)
+
+print("\ny_train :\n", y_train, "\n")
+
+print ("sample pixel in x_train : ", x_train[54, 12, 13, 1], "\n")
+
 """
 
 The 2nd example shows various ways of building the model
@@ -21,25 +42,7 @@ gives me complete freedom over the design of my deep neural network.
 
 """
 
-# Here are 2 examples that show usage of Sequential model and Functional API
-
-# Example 2.1 : Architecture using a Sequential Model
-
-from keras.models import Sequential
-from keras.layers import Flatten, Dense
-
-model = Sequential([
-
-    Dense(200, activation = "relu", input_shape=(32, 32, 3)),
-    Flatten(),
-    Dense(150, activation = "relu"),
-    Dense(10,  activation = "softmax"),
-
-])
-
-print("\nSummary of Model using Sequential construct:\n")
-model.summary()
-
+# Here is an example of making a model using Functional API
 # Example 2.2 : Architecture using FunctionalAPI
 
 from keras.layers import Input, Flatten, Dense
@@ -77,12 +80,45 @@ We need a loss function and an optimizer
 print("\nCompiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)\n)")
 from keras.optimizers import Adam
 
-opt = Adam(lr=0.005)
+opt = Adam(lr=0.0005)
 model.compile(loss='categorical_crossentropy', optimizer=opt,
               metrics=['accuracy'])
 
 print(".. (done)")
 
+"""
+
+4. Training the model ! 
+
+"""
+
+
+print("\nTraining the model\n)")
+
+model.fit(x_train,
+          y_train,
+          batch_size = 32,
+          epochs = 10,
+          shuffle = True
+          ) 
+
+
+"""
+Explanations for training:
+
+This will start training deep neural network to predict the category
+of an image from a CIFAR-10 dataset
+
+
+"""
+
+"""
+
+5. Evaluating the model
+
+"""
+
+model.evaluate(x_test, y_test)
 
 
 
