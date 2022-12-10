@@ -7,7 +7,7 @@
 
 echo -e "Running openpose config (getting github source)...\n"
 
-git clone  https://github.com/CMU-Perceptual-Computing-Lab/openpose.git
+git clone  https://github.com/anupamkaul/openpose.git
     cd openpose
     git remote add upstream https://github.com/CMU-Perceptual-Computing-Lab/openpose.git
     git remote -v
