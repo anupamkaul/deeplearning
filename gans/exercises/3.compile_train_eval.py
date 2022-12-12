@@ -77,7 +77,7 @@ We need a loss function and an optimizer
 
 """
 
-print("\nCompiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)\n)")
+print("\nCompiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)\n")
 from keras.optimizers import Adam
 
 opt = Adam(lr=0.0005)
@@ -93,7 +93,7 @@ print(".. (done)")
 """
 
 
-print("\nTraining the model\n)")
+print("\nTraining the model\n")
 
 model.fit(x_train,
           y_train,
@@ -119,7 +119,7 @@ of an image from a CIFAR-10 dataset
 """
 
 print("\nEvaluating the model for ", model.metrics_names, "\n)")
-model.evaluate(x_test, y_test)
+print(model.evaluate(x_test, y_test))
 
 """
 The output frm the above method should be a list of metrics we are monitoring:

@@ -1,0 +1,148 @@
+python 3.compile_train_eval.py 
+Using TensorFlow backend.
+
+
+Loading (or reading cached values of) CIFAR-10 dataset:
+
+
+y_train :
+ [[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 0. 0. ... 0. 0. 1.]
+ ...
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 1. 0. ... 0. 0. 0.]
+ [0. 1. 0. ... 0. 0. 0.]] 
+
+sample pixel in x_train :  0.36862746 
+
+WARNING: Logging before flag parsing goes to stderr.
+W1212 14:20:33.977137 139714818680576 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W1212 14:20:33.986821 139714818680576 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W1212 14:20:33.993262 139714818680576 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+
+Summary of Model using Functional API:
+
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_1 (InputLayer)         (None, 32, 32, 3)         0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 3072)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 200)               614600    
+_________________________________________________________________
+dense_2 (Dense)              (None, 150)               30150     
+_________________________________________________________________
+dense_3 (Dense)              (None, 10)                1510      
+=================================================================
+Total params: 646,260
+Trainable params: 646,260
+Non-trainable params: 0
+_________________________________________________________________
+
+Compiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)
+
+W1212 14:20:34.029428 139714818680576 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+W1212 14:20:34.033680 139714818680576 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3295: The name tf.log is deprecated. Please use tf.math.log instead.
+
+.. (done)
+
+Training the model
+
+W1212 14:20:34.149758 139714818680576 deprecation.py:323] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/tensorflow/python/ops/math_grad.py:1250: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+W1212 14:20:34.189340 139714818680576 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:986: The name tf.assign_add is deprecated. Please use tf.compat.v1.assign_add instead.
+
+Epoch 1/10
+2022-12-12 14:20:34.307566: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2022-12-12 14:20:34.311426: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2807905000 Hz
+2022-12-12 14:20:34.311937: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x56489198a1f0 executing computations on platform Host. Devices:
+2022-12-12 14:20:34.311952: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2022-12-12 14:20:34.401623: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+50000/50000 [==============================] - 15s 308us/step - loss: 1.8587 - acc: 0.3302
+Epoch 2/10
+50000/50000 [==============================] - 15s 304us/step - loss: 1.6664 - acc: 0.4075
+Epoch 3/10
+50000/50000 [==============================] - 15s 304us/step - loss: 1.5847 - acc: 0.4347
+Epoch 4/10
+50000/50000 [==============================] - 15s 304us/step - loss: 1.5322 - acc: 0.4550
+Epoch 5/10
+50000/50000 [==============================] - 15s 302us/step - loss: 1.4899 - acc: 0.4692
+Epoch 6/10
+50000/50000 [==============================] - 15s 303us/step - loss: 1.4553 - acc: 0.4825
+Epoch 7/10
+50000/50000 [==============================] - 15s 302us/step - loss: 1.4308 - acc: 0.4908
+Epoch 8/10
+50000/50000 [==============================] - 15s 302us/step - loss: 1.4070 - acc: 0.4994
+Epoch 9/10
+50000/50000 [==============================] - 15s 303us/step - loss: 1.3865 - acc: 0.5044
+Epoch 10/10
+50000/50000 [==============================] - 15s 303us/step - loss: 1.3650 - acc: 0.5163
+
+Evaluating the model for  ['loss', 'acc'] 
+)
+10000/10000 [==============================] - 0s 35us/step
+[1.4526366514205933, 0.4834]
+
+Display some results with matplotlib..
+
+random indices to show:  [6045 8574 1702 3810 3438 1868 9567  107 9340 8571]  
+
+
+For index:  0 ( image no.  6045 )
+
+prediction  =  ship
+actually is =  ship
+
+For index:  1 ( image no.  8574 )
+
+prediction  =  deer
+actually is =  deer
+
+For index:  2 ( image no.  1702 )
+
+prediction  =  ship
+actually is =  truck
+
+For index:  3 ( image no.  3810 )
+
+prediction  =  dog
+actually is =  cat
+
+For index:  4 ( image no.  3438 )
+
+prediction  =  truck
+actually is =  truck
+
+For index:  5 ( image no.  1868 )
+
+prediction  =  horse
+actually is =  bird
+
+For index:  6 ( image no.  9567 )
+
+prediction  =  airplane
+actually is =  horse
+
+For index:  7 ( image no.  107 )
+
+prediction  =  frog
+actually is =  frog
+
+For index:  8 ( image no.  9340 )
+
+prediction  =  automobile
+actually is =  automobile
+
+For index:  9 ( image no.  8571 )
+
+prediction  =  horse
+actually is =  horse
+
+
