@@ -118,6 +118,7 @@ of an image from a CIFAR-10 dataset
 
 """
 
+print("\nEvaluating the model for ", model.metrics_names, "\n)")
 model.evaluate(x_test, y_test)
 
 """
@@ -145,13 +146,21 @@ actual_single = CLASSES[np.argmax(y_test, axis = -1)]
 # Let's view some of the images along side their labels and prediction. We should not be expecting
 # more than 50% accuracy (given the results reported):
 
-print("Display some results with matplotlib..\n")
+print("\nDisplay some results with matplotlib..\n")
 
 import matplotlib.pyplot as plt
 
 n_to_show = 10
 indices = np.random.choice(range(len(x_test)), n_to_show) # take some random images from test...
 
+# text the predictions as matplotlib doesn't render for now
+print("random indices to show: ", indices, " \n")
+for i, idx in enumerate(indices):
+    print("\nFor index: ", i, "( image no. ", idx, ")\n")
+    print("prediction  = ",  str(preds_single[idx]))
+    print("actually is = ",  str(actual_single[idx]))
+
+# show the images and plot the text in matplotlib:
 fig = plt.figure(figsize=(15, 3))
 fig.subplots_adjust(hspace=0.4, wspace=0.4)
 plt.show()
