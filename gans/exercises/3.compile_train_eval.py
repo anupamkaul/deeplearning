@@ -65,7 +65,49 @@ model.summary()
 """
 Explanations for building the model:
 
+Using the Functional API, here we are using 3 types of layers : Input, Flatten and Dense.
+Input is an entry point into the network. We tell the network the shape of each data element
+to expect as a tuple. Notice that we don't specify the batch size (not necessary) as we can
+pass any number of images into the input layer simultaneously. 
 
+Next we Flatten the input into a vector using Flatten layer. This results in a vector of 
+length 32 * 32 * 3 = 3072. Reason we do this here is because the Dense layer needs a flat input
+(instead of a multi-dim array). (However other models'Dense layers  may require multi-dim array inputs)
+
+Dense layer is fundamental to a neural network. It contains a number of units that are densly connected
+to the prev layer, i.e. every unit in this layer is connected to every input in the previous layer, thru
+a single connection that carries a weight (which can be positive or negative). The output from a given
+unit is the weighted sum of the input it recieves from the previous layer to the following layer, which
+is then passed to a nonlinear Activation Function before being sent to the following layer. The activation
+function is critical to ensure the neural network is able to learn complex functions and doesn't just output
+a linear combination of its input. 
+
+There are many kinds of activation function but 3 most important are ReLU, Sigmoid, and Softmax.
+
+ReLU (Recitified Linear Unit) activiation function is defined to be zero if i/p is negative and otherwise
+equal to the input. LeakyRLU is a variation where whereas ReLU returns zero for i/p values less than zero,
+LeakyRLU fn returns a small negative number proportional to the i/p/ ReLU units can sometimes die if they
+always output zero, bcos of a large bias toward negative values preactivation. In this case gradient is zero
+and therefore no error is propagated back through this unit. LeakyReLU activations fix this issue by always 
+ensuring that gradient is non-zero. ReLU based activation functions are now considered the most reliable 
+activations to use between the layers of a deep network to encourage stable training.
+
+Sigmoid is useful for scaling output of a layer to be between 0 and 1. (e.g. for binary classification
+with 1 o/p unit or multilabel classification problems) where each output can belong to MORE than 1 class. 
+(y = 1 / (1 + e(-x)))
+
+Softmax is useful when you want the total SUM of the output layer to be equal to 1, for example, 
+for multiclass classification problems where each observation ONLY BELONGS TO EXACTLY 1 CLASS. 
+(Yi = e(Xi) / (Sigma(j=1, J)(e(Xj))), where J is the total number of units in a layer.
+
+In our neural network we use a softmax activation in the final layer to ensure that the output is a set 
+of 10 probabilities that sum to 1, which can be interpreted that the image belongs to each class.
+
+In our example model, we pass the input through 2 dense hidden layers, the first with 200 units, the second 
+with 150 units, both with ReLU activation functions. Final step is the define the model itself using Model
+class. We can also define Model with multiple input and output layers if needed (to be seen later). In our
+model the shape of Input layer matches the shape of x_train, and shape of Dense layer matches shape of 
+y_train. Model.summary9) displays shape of each layer in the network.
 
 """
 
