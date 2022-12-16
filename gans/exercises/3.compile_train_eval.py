@@ -111,14 +111,6 @@ y_train. Model.summary9) displays shape of each layer in the network.
 
 """
 
-"""
-
-3.The next step is: Compiling the model
-
-We need a loss function and an optimizer
-
-"""
-
 print("\nCompiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)\n")
 from keras.optimizers import Adam
 
@@ -127,6 +119,58 @@ model.compile(loss='categorical_crossentropy', optimizer=opt,
               metrics=['accuracy'])
 
 print(".. (done)")
+
+"""
+
+3.The next step is: Compiling the model
+
+We need a loss function and an optimizer
+
+Using ADAM (Adaptive Moment Estimation) as the optimizer (https://arxiv.org/pdf/1412.6980.pdf)
+(An optimizer technique for gradient descent. Intuition: https://www.geeksforgeeks.org/intuition-of-adam-optimizer/)
+
+Adam optimizer involves a combination of two gradient descent methodologies: 
+
+(A) Momentum: 
+
+This algorithm is used to accelerate the gradient descent algorithm by taking into consideration 
+the ‘exponentially weighted average’ of the gradients. Using averages makes the algorithm converge towards 
+the minima in a faster pace. 
+
+w_{t+1}=w_{t}-\alpha m_{t}
+where,
+
+m_{t}=\beta m_{t-1}+(1-\beta)\left[\frac{\delta L}{\delta w_{t}}\right]
+mt = aggregate of gradients at time t [current] (initially, mt = 0)
+mt-1 = aggregate of gradients at time t-1 [previous]
+Wt = weights at time t
+Wt+1 = weights at time t+1
+αt = learning rate at time t 
+∂L = derivative of Loss Function
+∂Wt = derivative of weights at time t
+β = Moving average parameter (const, 0.9)
+
+
+(B): Root Mean Square Propagation (RMSP): 
+
+Root mean square prop or RMSprop is an adaptive learning algorithm that tries to improve AdaGrad. 
+Instead of taking the cumulative sum of squared gradients like in AdaGrad, it takes the ‘exponential moving average’.
+
+w_{t+1}=w_{t}-\frac{\alpha_{t}}{\left(v_{t}+\varepsilon\right)^{1 / 2}} *\left[\frac{\delta L}{\delta w_{t}}\right]
+
+where, 
+
+v_{t}=\beta v_{t-1}+(1-\beta) *\left[\frac{\delta L}{\delta w_{t}}\right]^{2}
+Wt = weights at time t
+Wt+1 = weights at time t+1
+αt = learning rate at time t 
+∂L = derivative of Loss Function
+∂Wt = derivative of weights at time t
+Vt = sum of square of past gradients. [i.e sum(∂L/∂Wt-1)] (initially, Vt = 0)
+β = Moving average parameter (const, 0.9)
+ϵ = A small positive constant (10-8)
+
+"""
 
 """
 
