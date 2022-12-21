@@ -1,0 +1,89 @@
+python var7.py 
+Using TensorFlow backend.
+
+
+Loading (or reading cached values of) CIFAR-10 dataset:
+
+
+y_train :
+ [[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 0. 0. ... 0. 0. 1.]
+ ...
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 1. 0. ... 0. 0. 0.]
+ [0. 1. 0. ... 0. 0. 0.]] 
+
+sample pixel in x_train :  0.36862746 
+
+WARNING: Logging before flag parsing goes to stderr.
+W1221 14:25:25.720444 139935201879808 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W1221 14:25:25.730668 139935201879808 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W1221 14:25:25.737385 139935201879808 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+
+Summary of Model using Functional API:
+
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_1 (InputLayer)         (None, 32, 32, 3)         0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 3072)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 200)               614600    
+_________________________________________________________________
+dense_2 (Dense)              (None, 150)               30150     
+_________________________________________________________________
+dense_3 (Dense)              (None, 10)                1510      
+=================================================================
+Total params: 646,260
+Trainable params: 646,260
+Non-trainable params: 0
+_________________________________________________________________
+
+Compiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)
+)
+W1221 14:25:25.773791 139935201879808 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+W1221 14:25:25.778040 139935201879808 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3295: The name tf.log is deprecated. Please use tf.math.log instead.
+
+.. (done)
+
+Training the model
+)
+W1221 14:25:25.897506 139935201879808 deprecation.py:323] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/tensorflow/python/ops/math_grad.py:1250: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+W1221 14:25:25.938124 139935201879808 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:986: The name tf.assign_add is deprecated. Please use tf.compat.v1.assign_add instead.
+
+Epoch 1/10
+2022-12-21 14:25:26.057364: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2022-12-21 14:25:26.061336: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2807905000 Hz
+2022-12-21 14:25:26.061851: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x556006581ce0 executing computations on platform Host. Devices:
+2022-12-21 14:25:26.061868: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2022-12-21 14:25:26.154893: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+50000/50000 [==============================] - 3s 66us/step - loss: 1.9035 - acc: 0.3182
+Epoch 2/10
+50000/50000 [==============================] - 3s 63us/step - loss: 1.7253 - acc: 0.3863
+Epoch 3/10
+50000/50000 [==============================] - 3s 63us/step - loss: 1.6352 - acc: 0.4221
+Epoch 4/10
+50000/50000 [==============================] - 3s 63us/step - loss: 1.5800 - acc: 0.4395
+Epoch 5/10
+50000/50000 [==============================] - 3s 64us/step - loss: 1.5311 - acc: 0.4593
+Epoch 6/10
+50000/50000 [==============================] - 3s 63us/step - loss: 1.4965 - acc: 0.4725
+Epoch 7/10
+50000/50000 [==============================] - 3s 62us/step - loss: 1.4734 - acc: 0.4776
+Epoch 8/10
+50000/50000 [==============================] - 3s 62us/step - loss: 1.4415 - acc: 0.4916
+Epoch 9/10
+50000/50000 [==============================] - 3s 63us/step - loss: 1.4246 - acc: 0.4950
+Epoch 10/10
+50000/50000 [==============================] - 3s 63us/step - loss: 1.4013 - acc: 0.5047
+10000/10000 [==============================] - 0s 35us/step
+(generative) anupam@anupam-Inspiron-15-7000-Gaming:~/github_deeplearning/gans/exercises/3.variations$ 
+
