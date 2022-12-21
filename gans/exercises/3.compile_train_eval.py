@@ -20,11 +20,6 @@ print("\ny_train :\n", y_train, "\n")
 print ("sample pixel in x_train : ", x_train[54, 12, 13, 1], "\n")
 
 """
-
-The 2nd example shows various ways of building the model
-once data sets have been downloaded and pre-loaded into training 
-& test tensors
-
 In Keras there are 2 ways of defining the structure of my deep neural 
 network (or 'building' them) : as a Sequential model or using the 
 Functional API
@@ -39,6 +34,10 @@ frm multiple layers above it (or juxtapose right and left terminologies)
 So lets focus on Functional APIs which are more flexible, allow me to build from scratch (my model arch),
 and serve me better inn the long run, as my neural networks become more architecturally complex. FunctionalAPI
 gives me complete freedom over the design of my deep neural network.
+
+The 2nd example shows various ways of building the model
+once data sets have been downloaded and pre-loaded into training 
+& test tensors
 
 """
 
@@ -126,6 +125,9 @@ print(".. (done)")
 
 We need a loss function and an optimizer
 
+Optimizer notes:
+---------------
+
 Using ADAM (Adaptive Moment Estimation) as the optimizer (https://arxiv.org/pdf/1412.6980.pdf)
 (An optimizer technique for gradient descent. Intuition: https://www.geeksforgeeks.org/intuition-of-adam-optimizer/)
 
@@ -193,7 +195,26 @@ model.fit(x_train,
 Explanations for training:
 
 This will start training deep neural network to predict the category
-of an image from a CIFAR-10 dataset
+of an image from a CIFAR-10 dataset. We need the training data (x_train),
+(this is the raw image data), y_train is the one-hot encoded class labels associated (supervised learning),
+
+Batch_size determines how many observations will be passed to the network at each training step.
+Epochs determine how many times the network will be shown full data. Shuffle=true means that batches will be
+drawn randomly without replacement from the training data at each training step.
+
+Training proceeds as follows:
+
+First, weights of the network are initialized to random values. Then the network performs a series of training steps.
+
+At each training step, one batch of images is passed through the network and the errors are back propagated to update
+the weights. Batch_size determines how many images are shown in each training step batch. Larger the batch size, more
+stable the gradient but slower the training step. Batch size = entire data set is too computationally intensive today
+so batch size between 32 and 256 is used. Recommended practice now is to increase the batch size as training progresses.
+
+This continues until all observations in the dataset have been seen once & weights have been re-evaluated. This constitutes
+1 epoch. Data is then passed again through the n/w in the next epoch. Process repeats until the number of epochs have elapsed.
+Output is metrics (in this case accuracy of prediction - tested via eval new data, and loss factor here being categorial cross entropy).
+
 
 
 """
