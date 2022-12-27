@@ -1,0 +1,109 @@
+python 4.cnn_cifar.py 
+Using TensorFlow backend.
+
+
+Loading (or reading cached values of) CIFAR-10 dataset:
+
+
+y_train :
+ [[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 0. 0. ... 0. 0. 1.]
+ ...
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 1. 0. ... 0. 0. 0.]
+ [0. 1. 0. ... 0. 0. 0.]] 
+
+sample pixel in x_train :  0.36862746 
+
+WARNING: Logging before flag parsing goes to stderr.
+W1227 11:23:31.945122 140649307580160 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W1227 11:23:31.954750 140649307580160 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W1227 11:23:31.956118 140649307580160 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_1 (InputLayer)         (None, 32, 32, 3)         0         
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 16, 16, 10)        490       
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 8, 8, 20)          1820      
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 1280)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 10)                12810     
+=================================================================
+Total params: 15,120
+Trainable params: 15,120
+Non-trainable params: 0
+_________________________________________________________________
+
+Compiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)
+
+W1227 11:23:31.996970 140649307580160 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+W1227 11:23:32.001240 140649307580160 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3295: The name tf.log is deprecated. Please use tf.math.log instead.
+
+.. (done)
+
+Training the model
+
+W1227 11:23:32.117377 140649307580160 deprecation.py:323] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/tensorflow/python/ops/math_grad.py:1250: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+W1227 11:23:32.159244 140649307580160 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:986: The name tf.assign_add is deprecated. Please use tf.compat.v1.assign_add instead.
+
+Epoch 1/20
+2022-12-27 11:23:32.275361: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2022-12-27 11:23:32.279102: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2807905000 Hz
+2022-12-27 11:23:32.279762: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55684a9172d0 executing computations on platform Host. Devices:
+2022-12-27 11:23:32.279777: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2022-12-27 11:23:32.362385: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+50000/50000 [==============================] - 4s 87us/step - loss: 1.8737 - acc: 0.3415
+Epoch 2/20
+50000/50000 [==============================] - 4s 84us/step - loss: 1.7476 - acc: 0.3998
+Epoch 3/20
+50000/50000 [==============================] - 4s 84us/step - loss: 1.7214 - acc: 0.4111
+Epoch 4/20
+50000/50000 [==============================] - 4s 83us/step - loss: 1.7086 - acc: 0.4163
+Epoch 5/20
+50000/50000 [==============================] - 4s 85us/step - loss: 1.7009 - acc: 0.4191
+Epoch 6/20
+50000/50000 [==============================] - 4s 85us/step - loss: 1.6940 - acc: 0.4245
+Epoch 7/20
+50000/50000 [==============================] - 4s 85us/step - loss: 1.6888 - acc: 0.4242
+Epoch 8/20
+50000/50000 [==============================] - 4s 85us/step - loss: 1.6835 - acc: 0.4280
+Epoch 9/20
+50000/50000 [==============================] - 4s 86us/step - loss: 1.6795 - acc: 0.4288
+Epoch 10/20
+50000/50000 [==============================] - 4s 87us/step - loss: 1.6750 - acc: 0.4319
+Epoch 11/20
+50000/50000 [==============================] - 4s 87us/step - loss: 1.6723 - acc: 0.4309
+Epoch 12/20
+50000/50000 [==============================] - 4s 87us/step - loss: 1.6690 - acc: 0.4333
+Epoch 13/20
+50000/50000 [==============================] - 4s 87us/step - loss: 1.6646 - acc: 0.4346
+Epoch 14/20
+50000/50000 [==============================] - 4s 87us/step - loss: 1.6623 - acc: 0.4350
+Epoch 15/20
+50000/50000 [==============================] - 4s 87us/step - loss: 1.6593 - acc: 0.4357
+Epoch 16/20
+50000/50000 [==============================] - 4s 87us/step - loss: 1.6558 - acc: 0.4383
+Epoch 17/20
+50000/50000 [==============================] - 4s 87us/step - loss: 1.6540 - acc: 0.4386
+Epoch 18/20
+50000/50000 [==============================] - 4s 87us/step - loss: 1.6512 - acc: 0.4374
+Epoch 19/20
+50000/50000 [==============================] - 4s 87us/step - loss: 1.6489 - acc: 0.4404
+Epoch 20/20
+50000/50000 [==============================] - 4s 87us/step - loss: 1.6466 - acc: 0.4409
+
+Evaluating the model for  ['loss', 'acc'] 
+)
+10000/10000 [==============================] - 0s 41us/step
+[1.7316821538925171, 0.4026]
+

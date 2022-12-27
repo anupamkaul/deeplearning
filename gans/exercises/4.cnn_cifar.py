@@ -111,4 +111,36 @@ model = Model(input_layer, output_layer)
 model.summary()
 
 
+'''
+Compile the model as before, using Adam for Opt and Cross Entropy for loss
+'''
+
+print("\nCompiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)\n")
+from keras.optimizers import Adam
+
+opt = Adam(lr=0.0005)
+model.compile(loss='categorical_crossentropy', optimizer=opt,
+              metrics=['accuracy'])
+
+print(".. (done)")
+
+'''
+Train the model, as before
+'''
+
+print("\nTraining the model\n")
+
+model.fit(x_train,
+          y_train,
+          batch_size = 32,
+          epochs = 20,
+          shuffle = True
+          ) 
+
+'''
+Evaluate the model on test data
+'''
+
+print("\nEvaluating the model for ", model.metrics_names, "\n)")
+print(model.evaluate(x_test, y_test))
 
