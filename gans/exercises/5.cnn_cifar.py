@@ -56,59 +56,40 @@ In Keras the Conv2D layer applies convolutions to an input tensor with 2 spatial
 dimensions (such as an image). 
 '''
 
-from keras.layers import Input, Flatten, Dense, Conv2D, LeakyReLU
+from keras.layers import Input, Flatten, Dense, Conv2D, LeakyReLU, BatchNormalization, Dropout, Activation
 from keras.models import Model
 
-'''
-# an example:
+input_layer = Input((32,32,3))
 
-input_layer = Input(shape=(64, 64, 1))
-
-
-# format : new_layer_type = layer_name(parameters) (old_layer_name)
-conv_layer_1 = Conv2D(
-
-               filters = 2,
-               
-               kernel_size = (3,3),
-               strides = 1,
-               padding = "same"
-               )(input_layer)
-
-'''
-
-input_layer = Input(shape=(32, 32, 3))
+x = Conv2D(filters = 32, kernel_size = 3, strides = 1, padding = 'same')(input_layer)
+x = BatchNormalization()(x)
+x = LeakyReLU()(x)
 
 
-# format : new_layer_type = layer_name(parameters) (old_layer_name)
-conv_layer_1 = Conv2D(
-
-               filters = 10,
-               
-               kernel_size = (4,4),
-               strides = 2,
-               padding = "same"
-               )(input_layer)
-conv_layer_1 = LeakyReLU()(conv_layer_1)
-
-conv_layer_2 = Conv2D(
-
-               filters = 20,
-               
-               kernel_size = (3,3),
-               strides = 2,
-               padding = "same"
-               )(conv_layer_1)
-conv_layer_2 = LeakyReLU()(conv_layer_2)
+x = Conv2D(filters = 32, kernel_size = 3, strides = 2, padding = 'same')(x)
+x = BatchNormalization()(x)
+x = LeakyReLU()(x)
 
 
-flatten_layer = Flatten()(conv_layer_2)
+x = Conv2D(filters = 64, kernel_size = 3, strides = 1, padding = 'same')(x)
+x = BatchNormalization()(x)
+x = LeakyReLU()(x)
 
-output_layer = Dense(
-               units = 10,
-               activation = "softmax"
-               ) (flatten_layer)
-output_layer = LeakyReLU()(output_layer)
+
+x = Conv2D(filters = 64, kernel_size = 3, strides = 2, padding = 'same')(x)
+x = BatchNormalization()(x)
+x = LeakyReLU()(x)
+
+
+x = Flatten()(x)
+
+x = Dense(128)(x)
+x = BatchNormalization()(x)
+x = LeakyReLU()(x)
+x = Dropout(rate = 0.5)(x)
+
+x = Dense(NUM_CLASSES)(x)
+output_layer = Activation('softmax')(x)
 
 model = Model(input_layer, output_layer)
 model.summary()
@@ -136,8 +117,9 @@ print("\nTraining the model\n")
 model.fit(x_train,
           y_train,
           batch_size = 32,
-          epochs = 20,
-          shuffle = True
+          epochs = 10,
+          shuffle = True,
+          validation_data = (x_test, y_test)
           ) 
 
 '''
@@ -145,5 +127,5 @@ Evaluate the model on test data
 '''
 
 print("\nEvaluating the model for ", model.metrics_names, "\n)")
-print(model.evaluate(x_test, y_test))
+print(model.evaluate(x_test, y_test, batch_size=1000))
 
