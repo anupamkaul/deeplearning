@@ -1,0 +1,9 @@
+https://www.geeksforgeeks.org/intuition-of-adam-optimizer/
+
+file:///home/anupam/papers/Adam_1602.00134.pdf
+
+https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/
+
+
+
+
