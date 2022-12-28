@@ -20,6 +20,7 @@ pip install -r GDL_code/requirements.txt
 # note: jupyter notebook wasn't working (notebook sub_cmd wasn't available so I pip install notebook and reran cmd)
 # -----
 
-
+# installing CUDA for Ubuntu:
+# https://medium.com/@kapilvarshney/how-to-setup-ubuntu-16-04-with-cuda-gpu-and-other-requirements-for-deep-learning-f547db75f227
 
 
