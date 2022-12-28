@@ -1,0 +1,147 @@
+showing that running the convnet model to 20 epochs than 10 does not really improve accuracy (still in the 85% range)
+
+python 5.cnn_cifar.py 
+Using TensorFlow backend.
+
+
+Loading (or reading cached values of) CIFAR-10 dataset:
+
+
+y_train :
+ [[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 0. 0. ... 0. 0. 1.]
+ ...
+ [0. 0. 0. ... 0. 0. 1.]
+ [0. 1. 0. ... 0. 0. 0.]
+ [0. 1. 0. ... 0. 0. 0.]] 
+
+sample pixel in x_train :  0.36862746 
+
+WARNING: Logging before flag parsing goes to stderr.
+W1227 16:39:19.331791 140596099585792 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:74: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W1227 16:39:19.341793 140596099585792 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:517: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W1227 16:39:19.343294 140596099585792 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4138: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+W1227 16:39:19.360903 140596099585792 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:174: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+W1227 16:39:19.361128 140596099585792 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:181: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+2022-12-27 16:39:19.361507: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2022-12-27 16:39:19.365573: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2807905000 Hz
+2022-12-27 16:39:19.365832: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55b9876108f0 executing computations on platform Host. Devices:
+2022-12-27 16:39:19.365849: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2022-12-27 16:39:19.386077: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+W1227 16:39:19.387542 140596099585792 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:1834: The name tf.nn.fused_batch_norm is deprecated. Please use tf.compat.v1.nn.fused_batch_norm instead.
+
+W1227 16:39:19.726434 140596099585792 deprecation.py:506] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+input_1 (InputLayer)         (None, 32, 32, 3)         0         
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 32, 32, 32)        896       
+_________________________________________________________________
+batch_normalization_1 (Batch (None, 32, 32, 32)        128       
+_________________________________________________________________
+leaky_re_lu_1 (LeakyReLU)    (None, 32, 32, 32)        0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 16, 16, 32)        9248      
+_________________________________________________________________
+batch_normalization_2 (Batch (None, 16, 16, 32)        128       
+_________________________________________________________________
+leaky_re_lu_2 (LeakyReLU)    (None, 16, 16, 32)        0         
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 16, 16, 64)        18496     
+_________________________________________________________________
+batch_normalization_3 (Batch (None, 16, 16, 64)        256       
+_________________________________________________________________
+leaky_re_lu_3 (LeakyReLU)    (None, 16, 16, 64)        0         
+_________________________________________________________________
+conv2d_4 (Conv2D)            (None, 8, 8, 64)          36928     
+_________________________________________________________________
+batch_normalization_4 (Batch (None, 8, 8, 64)          256       
+_________________________________________________________________
+leaky_re_lu_4 (LeakyReLU)    (None, 8, 8, 64)          0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 4096)              0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 128)               524416    
+_________________________________________________________________
+batch_normalization_5 (Batch (None, 128)               512       
+_________________________________________________________________
+leaky_re_lu_5 (LeakyReLU)    (None, 128)               0         
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 128)               0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 10)                1290      
+_________________________________________________________________
+activation_1 (Activation)    (None, 10)                0         
+=================================================================
+Total params: 592,554
+Trainable params: 591,914
+Non-trainable params: 640
+_________________________________________________________________
+
+Compiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)
+
+W1227 16:39:19.756534 140596099585792 deprecation_wrapper.py:119] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/keras/optimizers.py:790: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+.. (done)
+
+Training the model
+
+W1227 16:39:19.833903 140596099585792 deprecation.py:323] From /home/anupam/miniconda3py38/envs/generative/lib/python3.6/site-packages/tensorflow/python/ops/math_grad.py:1250: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+Train on 50000 samples, validate on 10000 samples
+Epoch 1/20
+50000/50000 [==============================] - 91s 2ms/step - loss: 1.5393 - acc: 0.4627 - val_loss: 1.2229 - val_acc: 0.5675
+Epoch 2/20
+50000/50000 [==============================] - 93s 2ms/step - loss: 1.1368 - acc: 0.5987 - val_loss: 1.2064 - val_acc: 0.5888
+Epoch 3/20
+50000/50000 [==============================] - 96s 2ms/step - loss: 1.0033 - acc: 0.6489 - val_loss: 1.0734 - val_acc: 0.6133
+Epoch 4/20
+50000/50000 [==============================] - 98s 2ms/step - loss: 0.9203 - acc: 0.6789 - val_loss: 0.8764 - val_acc: 0.6934
+Epoch 5/20
+50000/50000 [==============================] - 98s 2ms/step - loss: 0.8637 - acc: 0.6986 - val_loss: 1.0700 - val_acc: 0.6379
+Epoch 6/20
+50000/50000 [==============================] - 116s 2ms/step - loss: 0.8135 - acc: 0.7159 - val_loss: 1.1985 - val_acc: 0.5879
+Epoch 7/20
+50000/50000 [==============================] - 95s 2ms/step - loss: 0.7711 - acc: 0.7332 - val_loss: 0.8069 - val_acc: 0.7172
+Epoch 8/20
+50000/50000 [==============================] - 98s 2ms/step - loss: 0.7270 - acc: 0.7460 - val_loss: 0.8113 - val_acc: 0.7198
+Epoch 9/20
+50000/50000 [==============================] - 92s 2ms/step - loss: 0.6886 - acc: 0.7591 - val_loss: 0.8752 - val_acc: 0.6973
+Epoch 10/20
+50000/50000 [==============================] - 90s 2ms/step - loss: 0.6580 - acc: 0.7699 - val_loss: 0.8444 - val_acc: 0.7100
+Epoch 11/20
+50000/50000 [==============================] - 91s 2ms/step - loss: 0.6298 - acc: 0.7794 - val_loss: 0.9765 - val_acc: 0.6763
+Epoch 12/20
+50000/50000 [==============================] - 92s 2ms/step - loss: 0.5971 - acc: 0.7909 - val_loss: 0.8845 - val_acc: 0.7093
+Epoch 13/20
+50000/50000 [==============================] - 92s 2ms/step - loss: 0.5705 - acc: 0.7988 - val_loss: 0.8506 - val_acc: 0.7188
+Epoch 14/20
+50000/50000 [==============================] - 95s 2ms/step - loss: 0.5497 - acc: 0.8062 - val_loss: 0.8892 - val_acc: 0.7044
+Epoch 15/20
+50000/50000 [==============================] - 93s 2ms/step - loss: 0.5250 - acc: 0.8127 - val_loss: 0.9478 - val_acc: 0.6936
+Epoch 16/20
+50000/50000 [==============================] - 92s 2ms/step - loss: 0.5055 - acc: 0.8206 - val_loss: 0.8546 - val_acc: 0.7323
+Epoch 17/20
+50000/50000 [==============================] - 92s 2ms/step - loss: 0.4824 - acc: 0.8293 - val_loss: 0.8704 - val_acc: 0.7242
+Epoch 18/20
+50000/50000 [==============================] - 95s 2ms/step - loss: 0.4664 - acc: 0.8344 - val_loss: 0.8284 - val_acc: 0.7362
+Epoch 19/20
+50000/50000 [==============================] - 92s 2ms/step - loss: 0.4480 - acc: 0.8400 - val_loss: 0.9178 - val_acc: 0.7188
+Epoch 20/20
+50000/50000 [==============================] - 92s 2ms/step - loss: 0.4364 - acc: 0.8435 - val_loss: 0.8560 - val_acc: 0.7356
+
+Evaluating the model for  ['loss', 'acc'] 
+)
+10000/10000 [==============================] - 4s 359us/step
+[0.8559593021869659, 0.7356000065803527]
+
