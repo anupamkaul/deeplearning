@@ -283,6 +283,7 @@ for i, idx in enumerate(indices):
             ha='center', transform=ax.transAxes)
 
     ax.imshow(img)
+    plt.show()
 
 plt.show()
 

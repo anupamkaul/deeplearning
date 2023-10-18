@@ -10,6 +10,7 @@ from keras.datasets import cifar10
 
 print("\n\nLoading (or reading cached values of) CIFAR-10 dataset:\n")
 
+# read here: ~/miniconda3py38/lib/python3.8/site-packages/keras/datasets/cifar10.py for load_data()
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 
 NUM_CLASSES = 10

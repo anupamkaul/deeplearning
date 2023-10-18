@@ -59,6 +59,10 @@ dimensions (such as an image).
 from keras.layers import Input, Flatten, Dense, Conv2D
 from keras.models import Model
 
+# read Conv2D in /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/layers/convolutional
+# read dense layer in /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/layers/core
+# read good algorithms/architecture in /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/applications
+
 '''
 # an example:
 

@@ -59,6 +59,18 @@ dimensions (such as an image).
 from keras.layers import Input, Flatten, Dense, Conv2D, LeakyReLU, BatchNormalization, Dropout, Activation
 from keras.models import Model
 
+# all of this code is in sub folders of /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras
+
+#e.g. Conv2D             : /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/layers/convolutional/conv2d.py (class Conv2D)
+#e.g. BatchNormalization : /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/layers/normalization/<file> (class) etc
+#e.g. LeakyRLU           : /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/layers/activation/
+#e.g. Dense              : /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/layers/core/
+#e.g. Flatten            : /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/layers/reshaping/
+#e.g. Adam               : /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/optimizers/optimizer_v2/
+
+# many of these files refer to the original arxiv papers they implement..
+# specific to Keras, its concept of Layer is in /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/engine (base_layer(vX).py)
+
 input_layer = Input((32,32,3))
 
 x = Conv2D(filters = 32, kernel_size = 3, strides = 1, padding = 'same')(input_layer)
