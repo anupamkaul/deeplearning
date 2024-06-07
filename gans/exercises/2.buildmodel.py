@@ -74,10 +74,20 @@ We need a loss function and an optimizer
 
 """
 
-print("\nCompiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)\n)")
+print("\nCompiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005))\n")
 from keras.optimizers import Adam
 
-opt = Adam(lr=0.005)
+from sys import platform
+
+if platform == "linux" or platform == "linux2":
+	print("run adam on linux\n")
+	opt = Adam(lr=0.005)
+elif platform == "darwin": #OS-X
+	print("run adam on mac\n")
+	opt = Adam(learning_rate=0.005)
+else:
+	print("hmm ... new OS, not running Adam yet\n")
+
 model.compile(loss='categorical_crossentropy', optimizer=opt,
               metrics=['accuracy'])
 
