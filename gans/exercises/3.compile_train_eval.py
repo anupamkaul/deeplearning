@@ -113,7 +113,19 @@ y_train. Model.summary9) displays shape of each layer in the network.
 print("\nCompiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)\n")
 from keras.optimizers import Adam
 
-opt = Adam(lr=0.0005)
+from sys import platform
+
+if platform == "linux" or platform == "linux2":
+	print("run adam on linux\n")
+	opt = Adam(lr=0.005)
+elif platform == "darwin": #OS-X
+	print("run adam on mac\n")
+	opt = Adam(learning_rate=0.005)
+else:
+	print("hmm ... new OS, not running Adam yet\n")
+
+#opt = Adam(lr=0.0005)
+
 model.compile(loss='categorical_crossentropy', optimizer=opt,
               metrics=['accuracy'])
 
@@ -270,7 +282,7 @@ for i, idx in enumerate(indices):
 # show the images and plot the text in matplotlib:
 fig = plt.figure(figsize=(15, 3))
 fig.subplots_adjust(hspace=0.4, wspace=0.4)
-plt.show()
+#plt.show()
 
 for i, idx in enumerate(indices):
     img = x_test[idx]
