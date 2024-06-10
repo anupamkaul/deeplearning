@@ -60,6 +60,7 @@ from keras.layers import Input, Flatten, Dense, Conv2D, LeakyReLU, BatchNormaliz
 from keras.models import Model
 
 # all of this code is in sub folders of /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras
+# (or in /opt/anaconda3/lib/python3.11/site-packages/keras for macos)
 
 #e.g. Conv2D             : /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/layers/convolutional/conv2d.py (class Conv2D)
 #e.g. BatchNormalization : /home/anupam/miniconda3py38/lib/python3.8/site-packages/keras/layers/normalization/<file> (class) etc
@@ -114,7 +115,18 @@ Compile the model as before, using Adam for Opt and Cross Entropy for loss
 print("\nCompiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)\n")
 from keras.optimizers import Adam
 
-opt = Adam(lr=0.0005)
+from sys import platform
+
+if platform == "linux" or platform == "linux2":
+	print("run adam on linux\n")
+	opt = Adam(lr=0.005)
+elif platform == "darwin": #OS-X
+	print("run adam on mac\n")
+	opt = Adam(learning_rate=0.005)
+else:
+	print("hmm ... new OS, not running Adam yet\n")
+
+#opt = Adam(lr=0.0005)
 model.compile(loss='categorical_crossentropy', optimizer=opt,
               metrics=['accuracy'])
 
