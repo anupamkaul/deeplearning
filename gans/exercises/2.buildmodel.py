@@ -62,7 +62,7 @@ model.summary()
 """
 Explanations for building the model:
 
-
+this is in 3.compile_eval code
 
 """
 

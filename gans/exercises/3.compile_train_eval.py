@@ -279,12 +279,9 @@ for i, idx in enumerate(indices):
     print("prediction  = ",  str(preds_single[idx]))
     print("actually is = ",  str(actual_single[idx]))
 
-# show the images and plot the text in matplotlib:
-fig = plt.figure(figsize=(15, 3))
-fig.subplots_adjust(hspace=0.4, wspace=0.4)
-#plt.show()
+    fig = plt.figure(figsize=(15, 3))
+    fig.subplots_adjust(hspace=0.4, wspace=0.4)
 
-for i, idx in enumerate(indices):
     img = x_test[idx]
     ax  = fig.add_subplot(1, n_to_show, i+1)
     ax.axis('off')

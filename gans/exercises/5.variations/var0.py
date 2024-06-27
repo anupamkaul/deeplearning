@@ -99,10 +99,10 @@ model.summary()
 Compile the model as before, using Adam for Opt and Cross Entropy for loss
 '''
 
-print("\nCompiling the model (opt=Adam, loss=cat_cross-entropy, lr=0.005)\n")
+print("\nCompiling the model (opt=Adam, loss=cat_cross-entropy, learning_rate=0.005)\n")
 from keras.optimizers import Adam
 
-opt = Adam(lr=0.0005)
+opt = Adam(learning_rate=0.0005)
 model.compile(loss='categorical_crossentropy', optimizer=opt,
               metrics=['accuracy'])
 
