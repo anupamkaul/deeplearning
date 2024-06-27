@@ -153,3 +153,54 @@ Evaluate the model on test data
 print("\nEvaluating the model for ", model.metrics_names, "\n)")
 print(model.evaluate(x_test, y_test, batch_size=1000))
 
+'''
+Visualize the predictions 
+'''
+
+CLASSES = np.array(['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog',
+                    'frog', 'horse', 'ship', 'truck'])
+
+preds = model.predict(x_test)  # preds is an array of shape [10000, 10]
+# (i.e. a vector of 10 class probabilities for each observation)
+
+preds_single =  CLASSES[np.argmax(preds, axis = -1)]
+actual_single = CLASSES[np.argmax(y_test, axis = -1)]
+
+# convert the array of probabilities back into a single prediction using numpy's argmax fn.
+# axis = -1 tells the fn to collapse the array over the last dimension (the classes dimension),
+# so that the shape of preds_single is then [10000, 1]
+
+# Let's view some of the images along side their labels and prediction. We should not be expecting
+# more than 50% accuracy (given the results reported):
+
+print("\nDisplay some results with matplotlib..\n")
+
+import matplotlib.pyplot as plt
+
+n_to_show = 10
+indices = np.random.choice(range(len(x_test)), n_to_show) # take some random images from test...
+
+# text the predictions as matplotlib doesn't render for now
+print("random indices to show: ", indices, " \n")
+for i, idx in enumerate(indices):
+    print("\nFor index: ", i, "( image no. ", idx, ")\n")
+    print("prediction  = ",  str(preds_single[idx]))
+    print("actually is = ",  str(actual_single[idx]))
+
+    fig = plt.figure(figsize=(15, 3))
+    fig.subplots_adjust(hspace=0.4, wspace=0.4)
+
+    img = x_test[idx]
+    ax  = fig.add_subplot(1, n_to_show, i+1)
+    ax.axis('off')
+
+    ax.text(0.5, -0.35, 'pred = ' + str(preds_single[idx]), fontsize=10,
+            ha='center', transform=ax.transAxes)
+    ax.text(0.5, -0.7, 'act = ' + str(actual_single[idx]), fontsize=10,
+            ha='center', transform=ax.transAxes)
+
+    ax.imshow(img)
+    plt.show()
+
+plt.show()
+
